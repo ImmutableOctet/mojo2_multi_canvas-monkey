@@ -47,19 +47,34 @@ Class Application Extends App
 		Local X:= 0
 		Local Y:= 0
 		
+		' These will represent our inner viewport.
 		Local vx:Int, vy:Int, vw:Int, vh:Int
 		
 		If (deviceAspectRatio > virtualAspectRatio) Then
+			' Calculate the scaled width.
 			vw = Int(Float(DeviceHeight()) * virtualAspectRatio)
+			
+			' Grab the current device-height.
 			vh = DeviceHeight()
 			
+			' Using our previously scaled width, subtract from the
+			' current device-width, then add our X-offset.
 			vx = (((DeviceWidth() - vw) / 2) + X)
+			
+			' Grab the Y-offset specified above.
 			vy = Y
 		Else ' Elseif (virtualAspectRatio < deviceAspectRatio) Then
+			' Grab the current device-height.
 			vw = DeviceWidth()
+			
+			' Calculate the scaled height.
 			vh = Int(DeviceWidth() / virtualAspectRatio)
 			
+			' Grab the X-offset specified above.
 			vx = X
+			
+			' Using our previously scaled height, subtract from the
+			' current device-height, then add our Y-offset.
 			vy = (((DeviceHeight() - vh) / 2) + Y)
 		Endif
 		
